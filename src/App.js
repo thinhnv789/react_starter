@@ -1,7 +1,24 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import {DeviceContext, devices} from './contexts/device-context';
+
+import './App.css';
+
+/* Header Components */
+const HeaderDesktop = Loadable({
+  loader: () => import('./components/Desktop/Header'),
+  loading: () => <div className="home-loading">Loading...</div>,
+});
+const HeaderTablet = Loadable({
+  loader: () => import('./components/Tablet/Header'),
+  loading: () => <div className="home-loading">Loading...</div>,
+});
+const HeaderMobile = Loadable({
+  loader: () => import('./components/Mobile/Header'),
+  loading: () => <div className="home-loading">Loading...</div>,
+});
+/* End Header */
 
 /* Home Components */
 const HomeDesktop = Loadable({
@@ -42,18 +59,15 @@ class App extends Component {
       <DeviceContext.Provider value={this.state}>
         <Router>
           <React.Fragment>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-            </ul>
-            <Switch>
-              <Route exact path="/" component={(device === devices.DESKTOP) ? HomeDesktop : ((device === devices.TABLET) ? HomeTablet : HomeMobile)}/>
-              <Route path="/about" component={About}/>
-            </Switch>
+            {
+              (device === devices.DESKTOP) ? <HeaderDesktop/> : ((device === devices.TABLET) ? <HeaderTablet/> : <HeaderMobile/>)
+            }
+            <div className="wrapper">
+              <Switch>
+                <Route exact path="/" component={(device === devices.DESKTOP) ? HomeDesktop : ((device === devices.TABLET) ? HomeTablet : HomeMobile)}/>
+                <Route path="/about" component={About}/>
+              </Switch>
+            </div>
           </React.Fragment>
         </Router>
       </DeviceContext.Provider>
