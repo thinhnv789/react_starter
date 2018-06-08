@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import {DeviceContext, devices} from './contexts/device-context';
 
-import './App.css';
-
 /* Header Components */
 const HeaderDesktop = Loadable({
   loader: () => import('./components/Desktop/Header'),
