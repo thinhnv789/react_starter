@@ -6,15 +6,15 @@ import {DeviceContext, devices} from './contexts/device-context';
 /* Header Components */
 const HeaderDesktop = Loadable({
   loader: () => import('./components/Desktop/Header'),
-  loading: () => <div className="home-loading">Loading...</div>,
+  loading: () => null,
 });
 const HeaderTablet = Loadable({
   loader: () => import('./components/Tablet/Header'),
-  loading: () => <div className="home-loading">Loading...</div>,
+  loading: () => null,
 });
 const HeaderMobile = Loadable({
   loader: () => import('./components/Mobile/Header'),
-  loading: () => <div className="home-loading">Loading...</div>,
+  loading: () => null,
 });
 /* End Header */
 
