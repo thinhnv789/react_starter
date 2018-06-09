@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import './style.css';
 
 class Header extends Component {
     constructor(props) {
         super(props);
-        
-        this.state = {};
+
+        this.navItems = [
+            {
+                link: '/',
+                name: 'Home'
+            },
+            {
+                link: '/about',
+                name: 'About'
+            }
+        ];
     }
 
     render() {
@@ -17,12 +26,15 @@ class Header extends Component {
                     {/* <a href="/">Test</a> */}
                     <nav>
                         <ul>
-                            <li className="active">
-                                <Link to="/">Home</Link>
-                            </li>
-                            <li>
-                                <Link to="/about">About</Link>
-                            </li>
+                            {
+                                this.navItems.map((item, index) => {
+                                    return (
+                                        <li key={index} className={`nav-item${(this.props.location.pathname === item.link) ? ' active' : ''}`}>
+                                            <Link to={item.link}>{item.name}</Link>
+                                        </li>
+                                    )
+                                })
+                            }
                         </ul>
                     </nav>
                 </div>
@@ -31,4 +43,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default withRouter(Header);
