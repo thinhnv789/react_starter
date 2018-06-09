@@ -47,6 +47,17 @@ class App extends Component {
     this.state = {
       device: (width < 576) ? devices.MOBILE : ((width < 768) ? devices.TABLET : devices.DESKTOP)
     }
+
+    this.navItems = [
+      {
+        link: '/',
+        name: 'Home'
+      },
+      {
+        link: '/about',
+        name: 'About'
+      }
+    ];
     console.log('screen', window.screen, ' : ', width);
   }
 
@@ -58,7 +69,11 @@ class App extends Component {
         <Router>
           <React.Fragment>
             {
-              (device === devices.DESKTOP) ? <HeaderDesktop/> : ((device === devices.TABLET) ? <HeaderTablet/> : <HeaderMobile/>)
+              (device === devices.DESKTOP) ? (
+                <HeaderDesktop navItems={this.navItems}/>
+              ) : (
+                (device === devices.TABLET) ? <HeaderTablet navItems={this.navItems}/> : <HeaderMobile navItems={this.navItems}/>
+              )
             }
             <div className="wrapper">
               <Switch>

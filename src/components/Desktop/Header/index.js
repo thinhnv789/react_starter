@@ -6,20 +6,11 @@ import './style.css';
 class Header extends Component {
     constructor(props) {
         super(props);
-
-        this.navItems = [
-            {
-                link: '/',
-                name: 'Home'
-            },
-            {
-                link: '/about',
-                name: 'About'
-            }
-        ];
     }
 
     render() {
+        const { navItems } = this.props;
+
         return (
             <header className="header-desktop">
                 <div className="container">
@@ -27,7 +18,7 @@ class Header extends Component {
                     <nav>
                         <ul>
                             {
-                                this.navItems.map((item, index) => {
+                                navItems.map((item, index) => {
                                     return (
                                         <li key={index} className={`nav-item${(this.props.location.pathname === item.link) ? ' active' : ''}`}>
                                             <Link to={item.link}>{item.name}</Link>
@@ -41,6 +32,10 @@ class Header extends Component {
             </header>
         )
     }
+}
+
+Header.defaultProps = {
+    navItems: []
 }
 
 export default withRouter(Header);

@@ -1,0 +1,41 @@
+.header-mobile .topbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 44px;
+    box-shadow: 0 1px 0 rgba(12,13,14,0.1), 0 1px 6px rgba(59,64,69,0.1);
+    background-color: #fafafb;
+    box-sizing: border-box;
+}
+.header-mobile .hamburger {
+    height: 100%;
+    border: 0;
+    padding: 0 10px;
+    background: transparent;
+}
+.header-mobile .hamburger:focus {
+    outline: none;
+}
+.header-mobile .icon-hamburger {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #6a737c;
+    transition: width .1s ease-in-out;
+    margin: 4px 0;
+}
+.header-mobile nav {
+    position: fixed;
+    top: 44px;
+    width: 80%;
+    height: calc(100vh - 44px);
+    background: #cccccc;
+    transition: left .4s ease-in-out;
+}
+.header-mobile nav.nav-hidden {
+    left: -100%;
+}
+.header-mobile nav.nav-show {
+    left: 0;
+}
